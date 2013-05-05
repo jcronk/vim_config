@@ -3,13 +3,13 @@
 	url = git://github.com/sjl/gundo.vim.git
 [submodule "bundle/Lucius"]
 	path = bundle/Lucius
-	url = https://github.com/vim-scripts/Lucius.git
+	url = git@github.com:jcronk/Lucius.git
 [submodule "bundle/snipmate.vim.git"]
 	path = bundle/snipmate.vim.git
-	url = git://github.com/msanders/snipmate.vim.git
+	url = git@github.com:jcronk/snipmate.vim.git
 [submodule "bundle/switch.vim"]
 	path = bundle/switch.vim
-	url = git://github.com/AndrewRadev/switch.vim.git
+	url = git@github.com:jcronk/switch.vim.git
 [submodule "bundle/vim-distinguished"]
 	path = bundle/vim-distinguished
 	url = git://github.com/Lokaltog/vim-distinguished.git
