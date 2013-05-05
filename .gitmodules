@@ -1,0 +1,51 @@
+[submodule "bundle/gundo.vim"]
+	path = bundle/gundo.vim
+	url = git://github.com/sjl/gundo.vim.git
+[submodule "bundle/Lucius"]
+	path = bundle/Lucius
+	url = https://github.com/vim-scripts/Lucius.git
+[submodule "bundle/snipmate.vim.git"]
+	path = bundle/snipmate.vim.git
+	url = git://github.com/msanders/snipmate.vim.git
+[submodule "bundle/switch.vim"]
+	path = bundle/switch.vim
+	url = git://github.com/AndrewRadev/switch.vim.git
+[submodule "bundle/vim-distinguished"]
+	path = bundle/vim-distinguished
+	url = git://github.com/Lokaltog/vim-distinguished.git
+[submodule "bundle/vim-abolish"]
+	path = bundle/vim-abolish
+	url = git@github.com:tpope/vim-abolish.git
+[submodule "bundle/vim-colors-solarized"]
+	path = bundle/vim-colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "bundle/vim-commentary"]
+	path = bundle/vim-commentary
+	url = git@github.com:tpope/vim-commentary.git
+[submodule "bundle/vim-endwise"]
+	path = bundle/vim-endwise
+	url = git://github.com/tpope/vim-endwise.git
+[submodule "bundle/vim-fugitive"]
+	path = bundle/vim-fugitive
+	url = git@github.com:tpope/vim-fugitive.git
+[submodule "bundle/vim-obsession"]
+	path = bundle/vim-obsession
+	url = git@github.com:tpope/vim-obsession.git
+[submodule "bundle/vim-repeat"]
+	path = bundle/vim-repeat
+	url = git@github.com:tpope/vim-repeat.git
+[submodule "bundle/vim-surround"]
+	path = bundle/vim-surround
+	url = git@github.com:tpope/vim-surround.git
+[submodule "bundle/vim-tbone"]
+	path = bundle/vim-tbone
+	url = git@github.com:tpope/vim-tbone.git
+[submodule "bundle/vim-unimpared"]
+	path = bundle/vim-unimpared
+	url = git://github.com/tpope/vim-unimpaired.git
+[submodule "bundle/vim-vividchalk"]
+	path = bundle/vim-vividchalk
+	url = git://github.com/tpope/vim-vividchalk.git
+[submodule "bundle/snipmate.vim"]
+	path = bundle/snipmate.vim
+	url = git://github.com/msanders/snipmate.vim.git
