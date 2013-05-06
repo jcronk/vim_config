@@ -23,6 +23,7 @@ set ai
 set si
 set wrap
 set number
+set incsearch
 let g:Perl_PerlTags = 'on'
 set foldmethod=syntax
 let perl_fold=1
