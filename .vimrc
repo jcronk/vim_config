@@ -1,8 +1,9 @@
 call pathogen#infect()
 set nocompatible
 set cursorline
-filetype plugin indent on
 set t_Co=256
+filetype plugin indent on
+set bg=dark
 colorscheme distinguished
 " colorscheme lucius
 " LuciusBlackHighContrast
