@@ -1,3 +1,4 @@
+﻿set encoding=utf-8
 call pathogen#infect()
 set nocompatible
 set cursorline
@@ -14,6 +15,7 @@ set hlsearch
 set hidden
 set formatprg=par
 set autoread
+set listchars=eol:⤦,tab:➟\ ,trail:☠
 set novisualbell
 set expandtab
 set smarttab
@@ -31,11 +33,9 @@ let perl_fold=1
 let g:xml_syntax_folding=1
 set foldlevel=3
 set diffopt+=iwhite
+autocmd FileType xml,xslt setlocal shiftwidth=4 tabstop=4
 augroup BEGIN
   au! BufRead,BufNewFile *.pl set iskeyword+=:
-augroup END
-augroup BEGIN
-    au! BufRead,BufNewFile *.xsl source ~/.vim/ftplugin/xslhelper.vim
 augroup END
 augroup BEGIN
     au! BufRead,BufNewFile *.aqs set nowrap 
@@ -49,9 +49,18 @@ set path+=$PWD/**
 set pastetoggle=<F4>
 set nrformats=
 set scrollopt=ver,hor,jump
+fun! ReformatXML()
+  let l = line(".")
+  let c = col(".")
+  let _s = @/
+  %!tidy --input-xml true --indent yes --indent-spaces 4 --wrap 0 2>/dev/null 
+  %s/\v(xmlns)/\r    \1/ge
+  call cursor(l,c)
+  let @/ = _s
+endfun
 command Scb set scrollbind!
 command Cls let @/=""
-command Xpp %!reformat_xml
+command Xpp call ReformatXML()
 set laststatus=2
 set statusline=   " clear the statusline for when vimrc is reloaded
 set statusline+=%-3.3n\                      " buffer number
@@ -84,3 +93,45 @@ autocmd BufRead *
       \ exec "set path^=".s:tempPath |
       \ exec "set path^=".s:default_path
 nnoremap <F5> :GundoToggle<CR>
+
+if exists("+showtabline")
+     function MyTabLine()
+         let s = ''
+         let t = tabpagenr()
+         let i = 1
+         while i <= tabpagenr('$')
+             let buflist = tabpagebuflist(i)
+             let winnr = tabpagewinnr(i)
+             let s .= '%' . i . 'T'
+             let s .= (i == t ? '%1*' : '%2*')
+             let s .= ' '
+             let s .= i . ')'
+             let s .= ' %*'
+             let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+             let file = bufname(buflist[winnr - 1])
+             let file = fnamemodify(file, ':p:t')
+             if file == ''
+                 let file = '[No Name]'
+             endif
+             let s .= file
+             let i = i + 1
+         endwhile
+         let s .= '%T%#TabLineFill#%='
+         let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+         return s
+     endfunction
+     set stal=2
+     set tabline=%!MyTabLine()
+endif
+
+fun! StripTrailingWhitespaces()
+  let l = line(".")
+  let c = col(".")
+  let _s=@/
+  %s/\s\+$//e
+  call cursor(l, c)
+  let @/=_s
+endfun
+
+autocmd BufWritePre *.rb,*.pl,*.pm,*.t,*.xsl :exe 'keepjumps call StripTrailingWhitespaces()'
+autocmd BufWritePre *.xml,*.xsl :exe 'keepjumps call ReformatXML()'
