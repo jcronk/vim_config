@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/likewise-open/NXTECH/jcronk/workspace/liberty_conversion/qat_testing/cert'
-let g:netrw_dirhist_2='/home/likewise-open/NXTECH/jcronk/workspace/liberty_conversion/qat_testing/cert/all_test_files'
-let g:netrw_dirhist_3='/home/likewise-open/NXTECH/jcronk/workspace/Packager/Packager-0.003/lib/Packager'
-let g:netrw_dirhist_4='/home/likewise-open/NXTECH/jcronk/workspace/Packager/Packager-0.003/lib'
-let g:netrw_dirhist_5='/home/likewise-open/NXTECH/jcronk/workspace/Packager/conf'
-let g:netrw_dirhist_6='/home/likewise-open/NXTECH/jcronk/IMT_Download/Certification'
-let g:netrw_dirhist_7='/home/likewise-open/NXTECH/jcronk/IMT_Download/Certification/Applied'

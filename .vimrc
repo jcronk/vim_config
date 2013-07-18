@@ -53,8 +53,11 @@ fun! ReformatXML()
   let l = line(".")
   let c = col(".")
   let _s = @/
-  %!tidy --input-xml true --indent yes --indent-spaces 4 --wrap 0 2>/dev/null 
+  let current_filetype = &ft
+  set ft=
+  %!tidy --input-xml true --preserve-entities yes --indent yes --indent-spaces 4 --wrap 0 --output-xml true 2>/dev/null 
   %s/\v(xmlns)/\r    \1/ge
+  let &ft=current_filetype
   call cursor(l,c)
   let @/ = _s
 endfun
@@ -132,6 +135,5 @@ fun! StripTrailingWhitespaces()
   call cursor(l, c)
   let @/=_s
 endfun
-
-autocmd BufWritePre *.rb,*.pl,*.pm,*.t,*.xsl :exe 'keepjumps call StripTrailingWhitespaces()'
 autocmd BufWritePre *.xml,*.xsl :exe 'keepjumps call ReformatXML()'
+autocmd BufWritePre *.rb,*.pl,*.pm,*.t,*.xsl :exe 'keepjumps call StripTrailingWhitespaces()'
