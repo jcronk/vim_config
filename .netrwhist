@@ -1,2 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/jcronk/workspace/AL3/lib/AL3'
+let g:netrw_dirhist_2='/home/jcronk/workspace/AL3/lib'
+let g:netrw_dirhist_3='/home/jcronk/.vim'
+let g:netrw_dirhist_4='/home/jcronk/.vim/perl-support'
+let g:netrw_dirhist_5='/home/jcronk/.vim'
+let g:netrw_dirhist_6='/home/jcronk/.vim/syntax'
+let g:netrw_dirhist_7='/home/jcronk/.vim'
