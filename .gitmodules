@@ -67,3 +67,12 @@
 [submodule "bundle/vim-bundler"]
 	path = bundle/vim-bundler
 	url = git@github.com:tpope/vim-bundler.git
+[submodule "bundle/perlomni.vim"]
+	path = bundle/perlomni.vim
+	url = git@github.com:c9s/perlomni.vim.git
+[submodule "bundle/lithochromatic-vim"]
+	path = bundle/lithochromatic-vim
+	url = https://github.com/gkya/lithochromatic-vim.git
+[submodule "bundle/vim-colorschemes"]
+	path = bundle/vim-colorschemes
+	url = git@github.com:flazz/vim-colorschemes.git
