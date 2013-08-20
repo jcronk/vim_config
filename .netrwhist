@@ -1,4 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/home/jcronk/workspace/al3buddy'
-let g:netrw_dirhist_2='/home/jcronk/workspace/al3buddy/spec'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/jcronk/workspace/AL3/bin'
+let g:netrw_dirhist_2='/home/jcronk/.vim/bundle/vim-airline'
+let g:netrw_dirhist_3='/home/jcronk/.vim/bundle/vim-airline/plugin'
+let g:netrw_dirhist_4='/home/jcronk/workspace/AL3/bin'
