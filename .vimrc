@@ -2,18 +2,40 @@
 call pathogen#infect()
 set nocompatible
 set cursorline
-set t_Co=256
+set wildmenu
+" set t_Co=256
 filetype plugin indent on
 set bg=dark
-colorscheme distinguished
+" colorscheme darkbone
+" colorscheme distinguished
+" colorscheme wombat256
+colorscheme jellybeans
+if &term =~ '256color'
+  set t_ut=
+endif
+set undodir=~/.vim/undodir
+set undofile
+set undolevels=1000
+set undoreload=10000
 " colorscheme lucius
 " LuciusBlackHighContrast
 set mouse=n
+set virtualedit=block
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'jellybeans'
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_branch_prefix = ' '
+let g:airline_readonly_symbol = ''
+let g:airline_linecolumn_prefix = ' '
+let g:airline_section_c = '[%n] %f%m'
 set ttymouse=xterm2
+set formatprg=par
 syntax on
 set hlsearch
 set hidden
-set formatprg=par
 set autoread
 set listchars=eol:⤦,tab:➟\ ,trail:☠
 set novisualbell
@@ -33,6 +55,7 @@ let perl_fold=1
 let g:xml_syntax_folding=1
 set foldlevel=3
 set diffopt+=iwhite
+set backspace=indent,eol,start
 autocmd FileType xml,xslt setlocal shiftwidth=4 tabstop=4
 augroup BEGIN
   au! BufRead,BufNewFile *.pl set iskeyword+=:
@@ -43,7 +66,7 @@ augroup END
 augroup BEGIN
     au! BufRead,BufNewFile *.al3 set nowrap 
 augroup END
-nnoremap <silent> <F8> :TlistToggle<CR>
+nnoremap <silent> <F6> :Vexplore<CR>
 nnoremap <silent> <F9> :tabn<CR>
 set path+=$PWD/**
 set pastetoggle=<F4>
@@ -55,7 +78,8 @@ fun! ReformatXML()
   let _s = @/
   let current_filetype = &ft
   set ft=
-  %!tidy --input-xml true --preserve-entities yes --indent yes --indent-spaces 4 --wrap 0 --output-xml true 2>/dev/null 
+  execute '%!tidy --input-xml true --preserve-entities yes --indent yes --indent-spaces 4 --wrap 0 2>/dev/null'
+  if v:shell_error | throw 'XML Reformat failed' | endif
   %s/\v(xmlns)/\r    \1/ge
   let &ft=current_filetype
   call cursor(l,c)
@@ -66,9 +90,11 @@ command Cls let @/=""
 command Xpp call ReformatXML()
 set laststatus=2
 set statusline=   " clear the statusline for when vimrc is reloaded
-set statusline+=%-3.3n\                      " buffer number
-set statusline+=%f\                          " file name
-set statusline+=%h%m%r%w                     " flags
+set statusline+=[%n]
+set statusline+=%#type#
+set statusline+=%-40f\                          " file name
+set statusline+=%#diffdelete#
+set statusline+=[%H%M%R%W]%*\                     " flags
 set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
 set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
 set statusline+=%{&fileformat}]              " file format
@@ -96,7 +122,7 @@ autocmd BufRead *
       \ exec "set path^=".s:tempPath |
       \ exec "set path^=".s:default_path
 nnoremap <F5> :GundoToggle<CR>
-
+autocmd BufRead *AQS*.xml set eventignore=BufWritePre
 if exists("+showtabline")
      function MyTabLine()
          let s = ''
@@ -135,5 +161,40 @@ fun! StripTrailingWhitespaces()
   call cursor(l, c)
   let @/=_s
 endfun
+
+fun! PerlStripTrailingWhitespace()
+  let l = line(".")
+  let c = col(".")
+  let _s=@/
+  let contents=getline(1,"$")
+  if match(contents,"^__DATA__") >= 0
+    0,/__DATA__/s/\s\+$//e
+  else
+    %s/\s\+$//e
+  endif
+  call cursor(l, c)
+  let @/=_s
+endfun
+let g:netrw_browse_split = 3 " open files in new tab
+let g:netrw_keepdir = 0 " keep current dir same as browsing dir
+let g:netrw_liststyle = 1 " long file listing with size+timestamp
+let g:netrw_sort_options = 'i' " sort case insensitive
 autocmd BufWritePre *.xml,*.xsl :exe 'keepjumps call ReformatXML()'
-autocmd BufWritePre *.rb,*.pl,*.pm,*.t,*.xsl :exe 'keepjumps call StripTrailingWhitespaces()'
+autocmd BufWritePre *.xsl :exe 'keepjumps call StripTrailingWhitespaces()'
+autocmd BufWritePre *.rb,*.pl,*.pm,*.t :exe 'keepjumps call PerlStripTrailingWhitespace()'
+nnoremap <F2> :XPathSearchPrompt<CR>
+let g:tagbar_type_xslt = {
+  \ 'ctagstype' : 'xslt',
+  \ 'kinds'     : [
+    \ 'n:namedtemplate',
+    \ 'm:matchedtemplate',
+    \ 'a:applytemplate',
+    \ 'c:calltemplate',
+    \ 'v:variable',
+    \ 'f:function',
+    \ 'p:parameter',
+    \ 'k:key'
+  \ ],
+  \ 'sort'     : 0,
+ \ }
+nnoremap <silent> <F8> :TagbarOpenAutoClose<CR>

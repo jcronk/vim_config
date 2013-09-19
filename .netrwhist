@@ -1,8 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/jcronk/workspace/AL3/bin'
-let g:netrw_dirhist_2='/home/jcronk/workspace/al3-ruby'
-let g:netrw_dirhist_3='/home/jcronk/workspace/al3-ruby/lib'
-let g:netrw_dirhist_4='/home/jcronk/workspace/al3-ruby/lib/al3'
-let g:netrw_dirhist_5='/home/jcronk/workspace/AL3/lib/AL3'
-let g:netrw_dirhist_6='/home/jcronk/workspace/meramec_pl_download/Temp'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/jcronk/workspace/ara_dl/SecondRound'
+let g:netrw_dirhist_2='/home/jcronk/workspace/ara_dl/SecondRound/P-00701 - 4 - Auto Endorse'
+let g:netrw_dirhist_3='/home/jcronk/workspace/ara_dl/SecondRound'
+let g:netrw_dirhist_4='/home/jcronk/workspace/ara_dl/SecondRound/P-01164 - 2 - Auto Issue'
