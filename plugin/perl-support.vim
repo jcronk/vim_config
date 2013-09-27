@@ -2760,8 +2760,6 @@ function! s:CreateAdditionalMaps ()
 	inoremap    <buffer>  <silent>  <LocalLeader>rma   <C-C>:call Perl_MakeArguments()<CR>
 	"
 	noremap    <buffer>  <silent>  <LocalLeader>rd    :call Perl_Debugger()<CR>
-	noremap    <buffer>  <silent>    <F9>             :call Perl_Debugger()<CR>
-	inoremap    <buffer>  <silent>    <F9>        <C-C>:call Perl_Debugger()<CR>
 	"
 	if s:UNIX
 		noremap    <buffer>  <silent>  <LocalLeader>re         :call Perl_MakeScriptExecutable()<CR>

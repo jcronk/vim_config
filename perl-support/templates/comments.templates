@@ -27,7 +27,7 @@
 #     SEE ALSO: n/a
 #===============================================================================
 == Comments.file description pl == map:chpl, sc:d, start, noindent ==
-#!usr/bin/perl 
+#!/usr/bin/env perl 
 use strict;
 use warnings;
 use autodie;
@@ -39,7 +39,7 @@ use warnings;
 use Carp;
  
 == Comments.file description t == map:cht, sc:d, start, noindent ==
-#!/usr/bin/perl
+#!/usr/bin/env perl
 use strict;
 use warnings;
 
