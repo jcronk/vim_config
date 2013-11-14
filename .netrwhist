@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/jcronk/workspace/AL3/lib/AL3/Message'
-let g:netrw_dirhist_2='/home/jcronk/workspace/AL3/lib/AL3'
-let g:netrw_dirhist_3='/home/jcronk/workspace/AL3/lib/AL3/Validate'
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/jcronk/workspace/republic_claims_dl/scripts/lib/Republic'
+let g:netrw_dirhist_2='/home/jcronk/workspace/republic_claims_dl/scripts/lib/Republic/Cobol'
+let g:netrw_dirhist_3='/home/jcronk/workspace/ifm-cl_download/data'
+let g:netrw_dirhist_4='/media/nxtech-share/Customer proposals-contracts-projects/All Projects/XML scraped from customers folder'
+let g:netrw_dirhist_5='/media/nxtech-share/Customer proposals-contracts-projects/All Projects/XML scraped from customers folder/CommlAutoPolicyQuoteInqRq'
