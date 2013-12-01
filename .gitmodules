@@ -97,3 +97,12 @@
 [submodule "bundle/vim-xpath"]
 	path = bundle/vim-xpath
 	url = git@github.com:actionshrimp/vim-xpath.git
+[submodule "bundle/rainbow_parens"]
+	path = bundle/rainbow_parens
+	url = git@github.com:kien/rainbow_parentheses.vim.git
+[submodule "bundle/vim-clojure-static"]
+	path = bundle/vim-clojure-static
+	url = git@github.com:guns/vim-clojure-static.git
+[submodule "bundle/vim-fireplace"]
+	path = bundle/vim-fireplace
+	url = git@github.com:tpope/vim-fireplace.git
