@@ -97,3 +97,6 @@
 [submodule "bundle/vim-xpath"]
 	path = bundle/vim-xpath
 	url = git@github.com:actionshrimp/vim-xpath.git
+[submodule "bundle/vim-flog"]
+	path = bundle/vim-flog
+	url = git@github.com:sentientmonkey/vim-flog.git
