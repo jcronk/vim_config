@@ -51,9 +51,9 @@ set number
 set incsearch
 let g:Perl_PerlTags = 'on'
 set foldmethod=syntax
+set foldlevel=25
 let perl_fold=1
 let g:xml_syntax_folding=1
-set foldlevel=3
 set diffopt+=iwhite
 set backspace=indent,eol,start
 autocmd FileType xml,xslt setlocal shiftwidth=4 tabstop=4
@@ -72,23 +72,43 @@ set path+=$PWD/**
 set pastetoggle=<F4>
 set nrformats=
 set scrollopt=ver,hor,jump
+" fun! ReformatXML()
+"   let l = line(".")
+"   let c = col(".")
+"   let _s = @/
+"   let current_filetype = &ft
+"   set ft=
+"   execute '%!tidy --input-xml true --preserve-entities yes --indent yes --input-encoding utf8 --indent-spaces 4 --wrap 0 --show-warnings 0  --quiet 1  2>/dev/null'
+"   if v:shell_error | throw 'XML Reformat failed' | endif
+"   %s/\v(xmlns)/\r    \1/ge
+"   let &ft=current_filetype
+"   call cursor(l,c)
+"   let @/ = _s
+" endfun
+" This is bad code, but I don't know vimscript well enough to fix it right
+" now.
 fun! ReformatXML()
   let l = line(".")
   let c = col(".")
-  let _s = @/
   let current_filetype = &ft
   set ft=
-  execute '%!tidy --input-xml true --preserve-entities yes --indent yes --input-encoding utf8 --indent-spaces 4 --wrap 0 --show-warnings 0  --quiet 1  2>/dev/null'
-  if v:shell_error | throw 'XML Reformat failed' | endif
-  %s/\v(xmlns)/\r    \1/ge
+  execute '%!xml_tidy'
   let &ft=current_filetype
   call cursor(l,c)
-  let @/ = _s
+endfun
+fun! ReformatXSLT()
+  let l = line(".")
+  let c = col(".")
+  let current_filetype = &ft
+  set ft=
+  execute '%!xml_tidy --xslt'
+  let &ft=current_filetype
+  call cursor(l,c)
 endfun
 command Xerr execute '%!tidy --input-xml true --preserve-entities yes --indent yes --indent-spaces 4 --wrap 0 --show-errors 0 --show-warnings false'
 command Scb set scrollbind!
 command Cls let @/=""
-command Xpp call ReformatXML()
+command Xpp call ReformatXSLT()
 set laststatus=2
 set statusline=   " clear the statusline for when vimrc is reloaded
 set statusline+=[%n]
@@ -180,7 +200,7 @@ let g:netrw_browse_split = 3 " open files in new tab
 let g:netrw_keepdir = 0 " keep current dir same as browsing dir
 let g:netrw_liststyle = 1 " long file listing with size+timestamp
 let g:netrw_sort_options = 'i' " sort case insensitive
-autocmd BufWritePre *.xml,*.xsl :exe 'keepjumps call ReformatXML()'
+autocmd BufWritePre *.xsl :exe 'keepjumps call ReformatXSLT()'
 autocmd BufWritePre *.xsl :exe 'keepjumps call StripTrailingWhitespaces()'
 autocmd BufWritePre *.rb,*.pl,*.pm,*.t :exe 'keepjumps call PerlStripTrailingWhitespace()'
 nnoremap <F2> :XPathSearchPrompt<CR>
@@ -199,3 +219,6 @@ let g:tagbar_type_xslt = {
   \ 'sort'     : 0,
  \ }
 nnoremap <silent> <F8> :TagbarOpenAutoClose<CR>
+highlight ColorColumn ctermbg=3
+call matchadd('ColorColumn','\%81v',100)
+set synmaxcol=1024
