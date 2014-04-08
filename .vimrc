@@ -51,20 +51,23 @@ set number
 set incsearch
 let g:Perl_PerlTags = 'on'
 set foldmethod=syntax
-set foldlevel=25
+set foldlevel=5
 let perl_fold=1
 let g:xml_syntax_folding=1
 set diffopt+=iwhite
 set backspace=indent,eol,start
 autocmd FileType xml,xslt setlocal shiftwidth=4 tabstop=4
 augroup BEGIN
-  au! BufRead,BufNewFile *.pl set iskeyword+=:
+  au! BufRead,BufNewFile *.pl,*.xsl set iskeyword+=:
 augroup END
 augroup BEGIN
-    au! BufRead,BufNewFile *.aqs set nowrap 
+  au! BufRead,BufNewFile *.aqs set nowrap 
 augroup END
 augroup BEGIN
-    au! BufRead,BufNewFile *.al3 set nowrap 
+  au! BufRead,BufNewFile *.al3 set nowrap 
+augroup END
+augroup BEGIN
+  au! BufRead,BufNewFile *.xsl set filetype=xsl
 augroup END
 nnoremap <silent> <F6> :Vexplore<CR>
 nnoremap <silent> <F9> :Gstatus<CR>
@@ -145,33 +148,33 @@ autocmd BufRead *
 nnoremap <F5> :GundoToggle<CR>
 autocmd BufRead *AQS*.xml set eventignore=BufWritePre
 if exists("+showtabline")
-     function MyTabLine()
-         let s = ''
-         let t = tabpagenr()
-         let i = 1
-         while i <= tabpagenr('$')
-             let buflist = tabpagebuflist(i)
-             let winnr = tabpagewinnr(i)
-             let s .= '%' . i . 'T'
-             let s .= (i == t ? '%1*' : '%2*')
-             let s .= ' '
-             let s .= i . ')'
-             let s .= ' %*'
-             let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
-             let file = bufname(buflist[winnr - 1])
-             let file = fnamemodify(file, ':p:t')
-             if file == ''
-                 let file = '[No Name]'
-             endif
-             let s .= file
-             let i = i + 1
-         endwhile
-         let s .= '%T%#TabLineFill#%='
-         let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
-         return s
-     endfunction
-     set stal=2
-     set tabline=%!MyTabLine()
+  function MyTabLine()
+    let s = ''
+    let t = tabpagenr()
+    let i = 1
+    while i <= tabpagenr('$')
+      let buflist = tabpagebuflist(i)
+      let winnr = tabpagewinnr(i)
+      let s .= '%' . i . 'T'
+      let s .= (i == t ? '%1*' : '%2*')
+      let s .= ' '
+      let s .= i . ')'
+      let s .= ' %*'
+      let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+      let file = bufname(buflist[winnr - 1])
+      let file = fnamemodify(file, ':p:t')
+      if file == ''
+        let file = '[No Name]'
+      endif
+      let s .= file
+      let i = i + 1
+    endwhile
+    let s .= '%T%#TabLineFill#%='
+    let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+    return s
+  endfunction
+  set stal=2
+  set tabline=%!MyTabLine()
 endif
 
 fun! StripTrailingWhitespaces()
@@ -205,20 +208,26 @@ autocmd BufWritePre *.xsl :exe 'keepjumps call StripTrailingWhitespaces()'
 autocmd BufWritePre *.rb,*.pl,*.pm,*.t :exe 'keepjumps call PerlStripTrailingWhitespace()'
 nnoremap <F2> :XPathSearchPrompt<CR>
 let g:tagbar_type_xslt = {
-  \ 'ctagstype' : 'xslt',
-  \ 'kinds'     : [
-    \ 'n:namedtemplate',
-    \ 'm:matchedtemplate',
-    \ 'a:applytemplate',
-    \ 'c:calltemplate',
-    \ 'v:variable',
-    \ 'f:function',
-    \ 'p:parameter',
-    \ 'k:key'
-  \ ],
-  \ 'sort'     : 0,
- \ }
+      \ 'ctagstype' : 'xslt',
+      \ 'kinds'     : [
+      \ 'n:namedtemplate',
+      \ 'm:matchedtemplate',
+      \ 'a:applytemplate',
+      \ 'c:calltemplate',
+      \ 'v:variable',
+      \ 'f:function',
+      \ 'p:parameter',
+      \ 'k:key'
+      \ ],
+      \ 'sort'     : 0,
+      \ }
 nnoremap <silent> <F8> :TagbarOpenAutoClose<CR>
 highlight ColorColumn ctermbg=3
 call matchadd('ColorColumn','\%81v',100)
 set synmaxcol=1024
+iabbr <silent> &d <C-R>=strftime("%m/%d/%Y")<CR>
+" Enable perlbrew path
+if has("gui_running") && filereadable($HOME . "/perl5/perlbrew/etc/bashrc")
+  let $PATH=system("source " . $HOME . "/perl5/perlbrew/etc/bashrc; echo -n
+  $PATH")
+endif
