@@ -1,0 +1,43 @@
+snippet cos "copy-of select"
+<xsl:copy-of select="${1:xpath}" />
+$0
+endsnippet
+
+snippet vos "value-of select"
+<xsl:value-of select="${1:xpath}" />
+$0
+endsnippet
+
+snippet tm "template match" b
+<xsl:template match="${1:xpath}">
+	$0
+</xsl:template>
+endsnippet
+
+snippet tmm "template match mode" b
+<xsl:template match="${1:xpath}" mode="${2:mode}">
+	$0
+</xsl:template>
+endsnippet
+
+snippet ats "apply-templates select" b
+<xsl:apply-templates select="${1:xpath}" />
+$0
+endsnippet
+
+snippet atsm "apply-templates select mode" b
+<xsl:apply-templates select="${1:xpath}" mode="${2}" />
+endsnippet
+
+snippet ele "element" b
+<xsl:element name="${1:name_or_expression}">
+	$0
+</xsl:element>
+endsnippet
+
+snippet atr "attribute" b
+<xsl:attribute name="${1:name_or_expression}">
+	$0
+</xsl:attribute>
+endsnippet
+

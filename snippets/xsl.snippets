@@ -1,0 +1,153 @@
+# XSLT elements
+
+snippet cos
+	<xsl:copy-of select="${1}" />${2}
+snippet vos
+	<xsl:value-of select="${1}" />${2}
+snippet tm
+	<xsl:template match="${1}">
+		${2}
+	</xsl:template>
+snippet tmm
+	<xsl:template match="${1}" mode="${2}">
+		${3}
+	</xsl:template>
+snippet ats
+	<xsl:apply-templates select="${1}" />${2}
+snippet atsm
+	<xsl:apply-templates select="${1}" mode="${2}" />
+snippet atswp
+	<xsl:apply-templates select="${1}">
+		<xsl:with-param name="${2}" select="${3}" />
+		${4}
+	</xsl:apply-templates>
+snippet atsmwp
+	<xsl:apply-templates select="${1}" mode="${2}">
+		<xsl:with-param name="${3}" select="${4}" />
+		${5}
+	</xsl:apply-templates>
+snippet vn
+	<xsl:variable name="${1}">
+		${2}
+	</xsl:variable>
+snippet vns
+	<xsl:variable name="${1}" select="${2}" />
+snippet fn
+	<fn:function name="${1}">
+		<xsl:param name="${2}"/>
+		${3}
+	</fn:function>
+snippet if
+	<xsl:if test="${1}">
+		${2}
+	</xsl:if>
+snippet cw
+	<xsl:choose>
+		<xsl:when test="${1}">
+			${2}
+		</xsl:when>
+	</xsl:choose>
+snippet cwo
+	<xsl:choose>
+		<xsl:when test="${1}">
+			${2}
+		</xsl:when>
+		<xsl:otherwise>
+			${3}
+		</xsl:otherwise>
+	</xsl:choose>
+snippet oth
+	<xsl:otherwise>${1}</xsl:otherwise>
+snippet wt
+	<xsl:when test="${1}">
+		${2}
+	</xsl:when>
+snippet fe
+	<xsl:for-each select="${1}">
+		${2}
+	</xsl:for-each>
+snippet pn
+	<xsl:param name="${1}" />
+snippet pns
+	<xsl:param name="${1}" select="${2}" />
+snippet wpn
+	<xsl:with-param name="${1}">
+		${2}
+	</xsl:with-param>
+snippet wpns
+	<xsl:with-param name="${1}" select="${2}" />
+snippet cp
+	<xsl:copy>
+		${1}
+	</xsl:copy>
+snippet tx
+	<xsl:text>
+		${1}
+	</xsl:text>
+snippet en
+	<xsl:element name="${1}">
+		${2}
+	</xsl:element>
+snippet kn
+	<xsl:key name="${1}" match="${2}" use="${3}" />
+snippet ctnp
+	<xsl:call-template name="${1}">
+		<xsl:with-param name="${2}" select="${3}" />
+	</xsl:call-template>
+snippet ctn
+	<xsl:call-template name="${1}">
+		${2}
+	</xsl:call-template>
+snippet msg
+	<xsl:message>
+		${1}
+	</xsl:message>
+snippet msg1
+	<xsl:message>${1}</xsl:message>
+snippet msgt
+	<xsl:message terminate="yes">
+		${1}
+	</xsl:message>
+snippet msgt1
+	<xsl:message terminate="yes">${1}</xsl:message>${2}
+snippet rs
+	<fn:result select="${1}" />${2}
+snippet info
+	<!--
+	* Title: ${1}
+	* Author: ${2}
+	* Synopsis: ${3}
+	* Copyright ${4} 
+	-->
+	${5}
+snippet !-
+	<!-- 
+			**********************************************************************
+			${1}
+			**********************************************************************
+	-->
+	${2}
+snippet sty
+	<?xml version="1.0" encoding="utf-8"?>
+	<xsl:stylesheet
+			xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+			xmlns:xalan="http://xml.apache.org/xalan"
+			xmlns:exsl="http://exslt.org/common"
+			xmlns:fn="http://exslt.org/functions"
+			xmlns:dt="http://exslt.org/dates-and-times"
+			xmlns:nx="NxTech.custom.function"
+			xmlns:go="GuideOne.custom.function"
+			xmlns:re="xalan://com.nxtech.util.regex.Match"
+			xmlns:set="http://exslt.org/sets"
+			xmlns:stash="xalan://com.nxtech.util.io.Stash"
+			xmlns:c="xalan://com.nxtech.util.io.XSLCounter"
+			xmlns:l="xalan://com.nxtech.util.Lists"
+			xmlns:str="urn.structured.data.generic"
+			xmlns:dx="xalan://com.nxtech.util.date.DateUtil" exclude-result-prefixes="xalan exsl fn dt nx re set stash c l str dx" version="1.0">
+			<xsl:output method="text" encoding="UTF-8" omit-xml-declaration="yes"/>
+			${1}
+	</xsl:stylesheet>
+snippet tn
+	<xsl:template name="${1}">
+			${2}
+	</xsl:template>
