@@ -106,3 +106,9 @@
 [submodule "bundle/vim-fireplace"]
 	path = bundle/vim-fireplace
 	url = git@github.com:tpope/vim-fireplace.git
+[submodule "bundle/vim-rsi"]
+	path = bundle/vim-rsi
+	url = git@github.com:tpope/vim-rsi.git
+[submodule "bundle/ultisnips"]
+	path = bundle/ultisnips
+	url = git@github.com:SirVer/ultisnips.git
