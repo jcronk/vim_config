@@ -13,6 +13,14 @@ else {
 
 endsnippet
 
+snippet lst "POD indented list"
+=over 4
+=item ${1:item}
+=item ${2:item}
+=item ${3:item}
+=back
+endsnippet
+
 snippet "(\d)sub" "Method plus POD documentation" r
 
 =head`!p snip.rv=match.group(1)` ${1:method_name}
@@ -25,6 +33,16 @@ sub $1 {
 	$0
 }
 
+endsnippet
+
+snippet "mth(\d)" "POD documentation for a method or function" r
+
+=head`!p snip.rv=match.group(1)` ${1:method_name}
+
+${2:description}
+
+=cut
+$0
 endsnippet
 
 snippet ifee "Conditional if..elsif..else (ifee)"
